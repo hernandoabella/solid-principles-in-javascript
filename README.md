@@ -419,3 +419,25 @@ lightSwitch.operate();
 fanSwitch.operate();
 lightSwitch.operate();
 ```
+
+**Explanation**:
+
+We start by defining an abstraction, the Device interface, with methods turnOn and turnOff. This interface represents devices that can be turned on and off.
+
+Concrete device implementations, such as Light and Fan, inherit from the Device interface and provide their specific implementations of turnOn and turnOff methods.
+
+Next, we define another abstraction, the Switch interface, which takes a Device instance as a parameter and has a method operate for controlling the device.
+
+Concrete switch implementations, such as OnOffSwitch, inherit from the Switch interface and provide their implementation of the operate method. In this case, the operate method toggles the device's state (on/off).
+
+In the usage section, we create instances of Light, Fan, and their respective switches (lightSwitch and fanSwitch). We then operate the switches independently.
+
+By using abstractions (interfaces) and allowing switches to operate on devices without knowing their specific implementations, we adhere to the Dependency Inversion Principle (DIP). This decouples switches from specific devices, making the code more flexible, reusable, and easily extendable with new devices and switches.
+
+## Conclusion: Your Path to Code Excellence
+
+You've embarked on a journey to master SOLID principles in JavaScript, unlocking the secrets to cleaner, more maintainable code. Armed with these principles—SRP, OCP, LSP, ISP, and DIP—you're ready to elevate your coding skills.
+
+Remember, SOLID principles are not just rules; they're your guiding lights toward code excellence. Apply them diligently, and you'll craft software that's not only functional but also resilient and adaptable.
+
+Whether you're a novice or a pro, your journey to mastery continues. Keep practicing and watch your code flourish.
