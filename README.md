@@ -254,3 +254,168 @@ In the usage section, we create instances of Sparrow and Ostrich and display the
 
 By implementing different bird subclasses (Sparrow and Ostrich) to ensure they can be used interchangeably in a bird collection, we adhere to the Liskov Substitution Principle (LSP). This principle ensures that subclasses can be substituted for their base class without altering the correctness of the program, promoting code reusability and flexibility.
 
+**Interface Segregation Principle (ISP):** Smaller, Specific Interfaces
+
+**Example:** Refine a worker interface by creating smaller, specific interfaces for work and eating, allowing clients to implement only what they need.
+
+```
+// Original Worker Interface
+
+class Worker {
+  constructor(name) {
+    this.name = name;
+  }
+
+  // Original interface method
+  work() {
+    // Default work behavior
+    return `${this.name} is working.`;
+  }
+
+  // Original interface method
+  eat() {
+    // Default eat behavior
+    return `${this.name} is eating.`;
+  }
+}
+
+// Refined Interfaces
+
+// Workable interface for workers who only need work behavior
+class Workable {
+  work() {
+    // Default work behavior
+    return "Working...";
+  }
+}
+
+// Eatable interface for workers who only need eat behavior
+class Eatable {
+  eat() {
+    // Default eat behavior
+    return "Eating...";
+  }
+}
+
+// Concrete Workers Implementing Specific Interfaces
+
+class Engineer extends Worker {
+  constructor(name) {
+    super(name);
+  }
+
+  work() {
+    // Custom work behavior for engineers
+    return `${this.name} is coding.`;
+  }
+}
+
+class Chef extends Worker {
+  constructor(name) {
+    super(name);
+  }
+
+  eat() {
+    // Custom eat behavior for chefs
+    return `${this.name} is tasting the dish.`;
+  }
+}
+
+// Usage
+
+const engineer = new Engineer("Alice");
+const chef = new Chef("Bob");
+
+// Clients can call specific methods based on their needs
+console.log(engineer.work());
+console.log(chef.eat());
+```
+
+**Explanation:**
+
+We start with an original Worker class that includes two methods: work and eat. However, this violates the Interface Segregation Principle (ISP) because not all workers need both behaviors.
+
+To adhere to ISP, we create two smaller, specific interfaces: Workable for workers who only need work behavior and Eatable for workers who only need eat behavior.
+
+We then create concrete worker classes (Engineer and Chef) that implement the specific interfaces based on their roles.
+
+The Engineer class implements the Workable interface and customizes the work method for coding.
+
+The Chef class implements the Eatable interface and customizes the eat method for tasting the dish.
+
+In the usage section, we create instances of Engineer and Chef and call specific methods based on the clients' needs.
+
+By refining the worker interface into smaller, specific interfaces and allowing clients to implement only what they need, we adhere to the Interface Segregation Principle (ISP). This promotes more flexible and maintainable code, ensuring that clients can use interfaces tailored to their requirements without unnecessary method implementations.
+
+**Dependency Inversion Principle (DIP):** Decoupling Dependencies
+
+**Example:** Create abstractions using interfaces to decouple switches from specific devices, enabling flexible and reusable code.
+
+```
+// Device Interface (Abstraction)
+
+class Device {
+  turnOn() {}
+  turnOff() {}
+}
+
+// Concrete Device Implementations
+
+class Light extends Device {
+  turnOn() {
+    console.log('Light is on.');
+  }
+
+  turnOff() {
+    console.log('Light is off.');
+  }
+}
+
+class Fan extends Device {
+  turnOn() {
+    console.log('Fan is on.');
+  }
+
+  turnOff() {
+    console.log('Fan is off.');
+  }
+}
+
+// Switch Interface (Abstraction)
+
+class Switch {
+  constructor(device) {
+    this.device = device;
+  }
+
+  operate() {}
+}
+
+// Concrete Switch Implementations
+
+class OnOffSwitch extends Switch {
+  operate() {
+    console.log('Switching on/off...');
+    if (this.device) {
+      if (this.device.isOn) {
+        this.device.turnOff();
+      } else {
+        this.device.turnOn();
+      }
+    }
+  }
+}
+
+// Usage
+
+const light = new Light();
+const fan = new Fan();
+
+const lightSwitch = new OnOffSwitch(light);
+const fanSwitch = new OnOffSwitch(fan);
+
+// Operate the switches independently
+lightSwitch.operate();
+fanSwitch.operate();
+lightSwitch.operate();
+```
