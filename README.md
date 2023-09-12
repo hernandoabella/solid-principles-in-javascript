@@ -17,32 +17,6 @@ In this guide, we'll dive into each SOLID principle's core concepts and practica
 **Example:** Refactor a monolithic user authentication module into separate modules, each responsible for a single aspect of authentication.
 
 ```
-// Before Refactoring (Monolithic Module)
-
-class UserAuthentication {
-  constructor(username, password) {
-    this.username = username;
-    this.password = password;
-  }
-
-  // Authentication logic - checks username and password
-  authenticate() {
-    // ...
-  }
-
-  // Generate and return an authentication token
-  generateAuthToken() {
-    // ...
-  }
-
-  // Log authentication activity
-  logAuthenticationActivity() {
-    // ...
-  }
-}
-
-// After Refactoring (Separate Modules)
-
 // User class represents user data
 class User {
   constructor(username, password) {
@@ -54,24 +28,24 @@ class User {
 // Authenticator class handles the authentication logic
 class Authenticator {
   static authenticateUser(user) {
-    // Authentication logic - checks username and password
-    // ...
+    if (user.username === "exampleUser" && user.password === "password123") {
+      return true;
+    }
+    return false;
   }
 }
 
 // TokenGenerator class generates authentication tokens
 class TokenGenerator {
   static generateAuthToken() {
-    // Generate and return an authentication token
-    // ...
+    return "sampleAuthToken";
   }
 }
 
 // Logger class handles the logging of authentication activities
 class Logger {
   static logAuthenticationActivity(user) {
-    // Log authentication activity
-    // ...
+    console.log(`User ${user.username} authenticated.`);
   }
 }
 
@@ -80,13 +54,21 @@ class Logger {
 const user = new User("exampleUser", "password123");
 
 // Authenticating the user
-Authenticator.authenticateUser(user);
+const isAuthenticated = Authenticator.authenticateUser(user);
 
-// Generating and using an authentication token
-const authToken = TokenGenerator.generateAuthToken();
+if (isAuthenticated) {
+  // Generating and using an authentication token
+  const authToken = TokenGenerator.generateAuthToken();
+  console.log(`Authentication Token: ${authToken}`);
 
-// Logging the authentication activity
-Logger.logAuthenticationActivity(user);
+  // Logging the authentication activity
+  Logger.logAuthenticationActivity(user);
+} else {
+  console.log("Authentication failed.");
+}
+
+// Authentication Token: sampleAuthToken
+// User exampleUser authenticated.
 ```
 
 **Explanation:**
@@ -162,7 +144,7 @@ shapeManager.addShape(rectangle);
 shapeManager.addShape(circle);
 
 const totalArea = shapeManager.getTotalArea();
-console.log(`Total Area: ${totalArea}`);
+console.log(`Total Area: ${totalArea}`); // Total Area: 203.93804002589985
 ```
 
 **Explanation:**
@@ -238,6 +220,11 @@ const ostrich = new Ostrich("Ostrich", 250);
 
 displayBirdInformation(sparrow);
 displayBirdInformation(ostrich);
+
+// Sparrow is flying with a wingspan of 20 cm.
+// Sparrow is chirping.
+// Ostrich is flying with a wingspan of 250 cm.
+// Ostrich is running on the ground.
 ```
 
 **Explanation:**
@@ -260,7 +247,6 @@ By implementing different bird subclasses (Sparrow and Ostrich) to ensure they c
 
 ```
 // Original Worker Interface
-
 class Worker {
   constructor(name) {
     this.name = name;
@@ -329,6 +315,9 @@ const chef = new Chef("Bob");
 // Clients can call specific methods based on their needs
 console.log(engineer.work());
 console.log(chef.eat());
+
+// Alice is coding.
+// Bob is tasting the dish. 
 ```
 
 **Explanation:**
@@ -353,14 +342,12 @@ By refining the worker interface into smaller, specific interfaces and allowing 
 
 ```
 // Device Interface (Abstraction)
-
 class Device {
   turnOn() {}
   turnOff() {}
 }
 
 // Concrete Device Implementations
-
 class Light extends Device {
   turnOn() {
     console.log('Light is on.');
@@ -382,7 +369,6 @@ class Fan extends Device {
 }
 
 // Switch Interface (Abstraction)
-
 class Switch {
   constructor(device) {
     this.device = device;
@@ -392,7 +378,6 @@ class Switch {
 }
 
 // Concrete Switch Implementations
-
 class OnOffSwitch extends Switch {
   operate() {
     console.log('Switching on/off...');
@@ -418,6 +403,13 @@ const fanSwitch = new OnOffSwitch(fan);
 lightSwitch.operate();
 fanSwitch.operate();
 lightSwitch.operate();
+
+// Switching on/off...
+// Light is on.
+// Switching on/off...
+// Fan is on.
+// Switching on/off...
+// Light is off.
 ```
 
 **Explanation**:
