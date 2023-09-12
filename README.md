@@ -12,7 +12,7 @@ JavaScript's versatility empowers developers to create a wide range of applicati
 
 In this guide, we'll dive into each SOLID principle's core concepts and practical implications in JavaScript. Whether you're a beginner or a pro, you'll gain insights and practical wisdom to apply SOLID principles effectively in your projects. Let's start mastering SOLID principles for cleaner and more scalable JavaScript code.
 
-**Single Responsibility Principle (SRP):** Ensuring Classes Have a Single Reason to Change
+## Single Responsibility Principle (SRP): Ensuring Classes Have a Single Reason to Change
 
 **Example:** Refactor a monolithic user authentication module into separate modules, each responsible for a single aspect of authentication.
 
@@ -105,7 +105,7 @@ The Logger class manages the logging of authentication activities, ensuring that
 
 By breaking down the monolithic module into separate modules, each class now has a single responsibility, adhering to the Single Responsibility Principle (SRP). This refactoring approach promotes cleaner, more organized code and enhances code maintainability and scalability.
 
-**Open/Closed Principle (OCP):** Extending Without Modification
+## Open/Closed Principle (OCP): Extending Without Modification
 
 **Example:** Extend a geometric shapes library by creating new shapes without altering existing code, preserving stability.
 
@@ -177,7 +177,7 @@ In the usage section, we create instances of Rectangle and Circle, add them to t
 
 By extending the geometric shapes library with the Circle class and creating new shapes without altering existing code, we follow the Open/Closed Principle (OCP). This approach maintains code stability and allows for easy extension with new shapes in the future.
 
-**Liskov Substitution Principle (LSP):** Interchangeable Subtypes
+## Liskov Substitution Principle (LSP): Interchangeable Subtypes
 
 **Example:** Implement different bird subclasses (e.g., Sparrow, Ostrich) to ensure they can be used interchangeably in a bird collection.
 
@@ -254,7 +254,7 @@ In the usage section, we create instances of Sparrow and Ostrich and display the
 
 By implementing different bird subclasses (Sparrow and Ostrich) to ensure they can be used interchangeably in a bird collection, we adhere to the Liskov Substitution Principle (LSP). This principle ensures that subclasses can be substituted for their base class without altering the correctness of the program, promoting code reusability and flexibility.
 
-**Interface Segregation Principle (ISP):** Smaller, Specific Interfaces
+## Interface Segregation Principle (ISP): Smaller, Specific Interfaces
 
 **Example:** Refine a worker interface by creating smaller, specific interfaces for work and eating, allowing clients to implement only what they need.
 
@@ -347,7 +347,7 @@ In the usage section, we create instances of Engineer and Chef and call specific
 
 By refining the worker interface into smaller, specific interfaces and allowing clients to implement only what they need, we adhere to the Interface Segregation Principle (ISP). This promotes more flexible and maintainable code, ensuring that clients can use interfaces tailored to their requirements without unnecessary method implementations.
 
-**Dependency Inversion Principle (DIP):** Decoupling Dependencies
+## Dependency Inversion Principle (DIP): Decoupling Dependencies
 
 **Example:** Create abstractions using interfaces to decouple switches from specific devices, enabling flexible and reusable code.
 
