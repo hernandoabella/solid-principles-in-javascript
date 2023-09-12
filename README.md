@@ -177,3 +177,80 @@ In the usage section, we create instances of Rectangle and Circle, add them to t
 
 By extending the geometric shapes library with the Circle class and creating new shapes without altering existing code, we follow the Open/Closed Principle (OCP). This approach maintains code stability and allows for easy extension with new shapes in the future.
 
+**Liskov Substitution Principle (LSP):** Interchangeable Subtypes
+
+**Example:** Implement different bird subclasses (e.g., Sparrow, Ostrich) to ensure they can be used interchangeably in a bird collection.
+
+```
+// Bird base class
+
+class Bird {
+  constructor(name, wingspan) {
+    this.name = name;
+    this.wingspan = wingspan;
+  }
+
+  fly() {
+    return `${this.name} is flying with a wingspan of ${this.wingspan} cm.`;
+  }
+}
+
+// Sparrow subclass
+
+class Sparrow extends Bird {
+  constructor(name, wingspan) {
+    super(name, wingspan);
+  }
+
+  chirp() {
+    return `${this.name} is chirping.`;
+  }
+}
+
+// Ostrich subclass
+
+class Ostrich extends Bird {
+  constructor(name, wingspan) {
+    super(name, wingspan);
+  }
+
+  run() {
+    return `${this.name} is running on the ground.`;
+  }
+}
+
+// Bird Collection
+
+function displayBirdInformation(bird) {
+  console.log(bird.fly());
+  if (bird instanceof Sparrow) {
+    console.log(bird.chirp());
+  }
+  if (bird instanceof Ostrich) {
+    console.log(bird.run());
+  }
+}
+
+// Usage
+
+const sparrow = new Sparrow("Sparrow", 20);
+const ostrich = new Ostrich("Ostrich", 250);
+
+displayBirdInformation(sparrow);
+displayBirdInformation(ostrich);
+```
+
+**Explanation:**
+
+We start with a base class Bird that has common properties (e.g., name and wingspan) and a method fly that represents flying behavior.
+
+The Sparrow class is a subclass of Bird and introduces a specific behavior chirp for chirping.
+
+Similarly, the Ostrich class is a subclass of Bird and introduces a specific behavior run for running.
+
+In the Bird Collection function, we can display bird information, and it accepts any bird object, adhering to Liskov Substitution Principle (LSP). Depending on the type of bird (Sparrow or Ostrich), it calls the appropriate methods.
+
+In the usage section, we create instances of Sparrow and Ostrich and display their information using the displayBirdInformation function.
+
+By implementing different bird subclasses (Sparrow and Ostrich) to ensure they can be used interchangeably in a bird collection, we adhere to the Liskov Substitution Principle (LSP). This principle ensures that subclasses can be substituted for their base class without altering the correctness of the program, promoting code reusability and flexibility.
+
