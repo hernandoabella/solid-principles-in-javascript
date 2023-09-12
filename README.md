@@ -14,7 +14,7 @@ In this guide, we'll dive into each SOLID principle's core concepts and practica
 
 **Single Responsibility Principle (SRP):** Ensuring Classes Have a Single Reason to Change
 
-Example: Refactor a monolithic user authentication module into separate modules, each responsible for a single aspect of authentication.
+**Example:** Refactor a monolithic user authentication module into separate modules, each responsible for a single aspect of authentication.
 
 ```
 // Before Refactoring (Monolithic Module)
@@ -104,3 +104,76 @@ The TokenGenerator class focuses on generating and returning authentication toke
 The Logger class manages the logging of authentication activities, ensuring that this task is performed by a dedicated module.
 
 By breaking down the monolithic module into separate modules, each class now has a single responsibility, adhering to the Single Responsibility Principle (SRP). This refactoring approach promotes cleaner, more organized code and enhances code maintainability and scalability.
+
+**Open/Closed Principle (OCP):** Extending Without Modification
+
+**Example:** Extend a geometric shapes library by creating new shapes without altering existing code, preserving stability.
+
+```
+// Existing Geometric Shapes Library
+
+class Rectangle {
+  constructor(width, height) {
+    this.width = width;
+    this.height = height;
+  }
+
+  area() {
+    return this.width * this.height;
+  }
+}
+
+// New Shape (Extending Without Modification)
+
+class Circle {
+  constructor(radius) {
+    this.radius = radius;
+  }
+
+  area() {
+    return Math.PI * this.radius * this.radius;
+  }
+}
+
+// ShapeManager to Calculate Total Area
+
+class ShapeManager {
+  constructor() {
+    this.shapes = [];
+  }
+
+  addShape(shape) {
+    this.shapes.push(shape);
+  }
+
+  getTotalArea() {
+    return this.shapes.reduce((total, shape) => total + shape.area(), 0);
+  }
+}
+
+// Usage
+
+const rectangle = new Rectangle(5, 10);
+const circle = new Circle(7);
+
+const shapeManager = new ShapeManager();
+
+shapeManager.addShape(rectangle);
+shapeManager.addShape(circle);
+
+const totalArea = shapeManager.getTotalArea();
+console.log(`Total Area: ${totalArea}`);
+```
+
+**Explanation:**
+
+The initial code includes an existing Rectangle class in a geometric shapes library with a method to calculate its area.
+
+The Open/Closed Principle (OCP) states that code should be open for extension but closed for modification. To extend without modifying existing code, we introduce a new Circle class that calculates its area.
+
+The ShapeManager class is responsible for managing different shapes and calculating their total area. It doesn't need to be modified when new shapes are added, adhering to the OCP.
+
+In the usage section, we create instances of Rectangle and Circle, add them to the shapeManager, and calculate the total area.
+
+By extending the geometric shapes library with the Circle class and creating new shapes without altering existing code, we follow the Open/Closed Principle (OCP). This approach maintains code stability and allows for easy extension with new shapes in the future.
+
